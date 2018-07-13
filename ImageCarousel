@@ -1,0 +1,175 @@
+<!doctype html><html lang="en">
+	<head>
+    	<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+		<title>Accessible Carousel Example</title>
+<!--Bootstrap and CSS files-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+        <style>
+/* CSS styles */
+/*border box fix and clear default margin and padding*/
+			html {box-sizing: border-box; background-color: white; margin: 0 auto; padding: 0; font-size: 1em;}
+			*, *:before, *:after {box-sizing:inherit;}
+/* end border box fix */
+	
+/* color palette 
+			black
+			white
+			#e6e6e6 - light grey
+			#f7f7f7 - almost white
+			rgb(46, 67, 82) - Dark Navy
+			*/
+/* body style -----------------------------------------------------*/
+			body { margin: 0 auto; width: 100%;	font-family: "Segoe UI Semilight", "Segoe UI", sans-serif; font-size: 0.9em; }
+/* header style-----------------------------------------------------*/
+			header { margin: 0 auto; border-bottom-color: rgb(46, 67, 82); border-style: solid; border-width: 0px 0px 3px 0px; height: 180px; padding: 0; max-width: 100%; background-color: #454545;}
+			header h1 {margin: 0 auto; padding: 0; max-width: 1300px; font-weight: bold; color: white;}
+/* main content style -----------------------------------------------------*/
+			article {margin: 0 auto; padding: 0; padding-top: 40px;	background-color: #f7f7f7; max-width: 95%;}
+			section {margin: 0 auto; padding: 0.1em 1.5em; max-width: 98%; background-color: #f7f7f7;}
+			h1, h2, h3 {font-weight: normal; color: rgb(45, 67, 81); text-align: left;}
+			h1 {font-size: 2.5em; text-align: center;}
+			h2 {font-size: 1.4em; display: inline; vertical-align: center; line-height: 50px;}
+			#commentsIcon {width: 50px; height: 50px; display: inline-block; background-color: #04626C; fill: white; padding: 5px; margin: 0 10px 0 0; vertical-align: top;}
+			div.titleSection {border-bottom: 3px solid #0c2c33;}
+			h3 {font-size: 2.5em; text-align: left; margin-top: 1.2em; margin-left: 1em;}
+			p {font-size: 1.2em; text-align: left; margin: 1em;}
+			.skip {display: none;}
+/* Image Slider style custom -----------------------------------------------------*/
+			.container {margin: 0 auto; padding: 0;	max-width: 1000px; }
+			.carousel-inner {padding: 0; margin: 0 auto; max-width: 1000px;}
+			.carouselText {padding: 5px 30px 30px 70px; height: 140px;}
+			.carousel {background-color: #0b6079;}
+			div.row {padding: 0; margin: 0 auto; width: 100%;}
+			.carousel p {align-content: center; color: white; font-size: 1em; max-width: 90%; margin: 0 0.6em; padding: 0 0.8em 0 1.2em;}
+			.carousel h2 {align-content: center; color: white; font-size: 1.4em; max-width: 90%; margin: 0 auto; padding: 0 0.8em 0.2em 1.2em;}
+			.carousel article {background-color: #0b6079; padding: 0px; max-width: 100%;}
+			.carousel-indicators button{background-color: rgba(255, 255, 255,0.5); height: 20px; width: 20px; border: 1px solid rgba(97, 106, 107,0.7);	border-radius: 20px; margin: 3px 5px; cursor: pointer;}
+			.carousel-indicators li{background-color: transparent; height: 20px; width: 20px; border: 1px solid transparent; border-radius: 20px;}
+			.carousel-indicators .active{background-color: rgb(255, 255, 255);}
+			.carousel-control-prev {background-color: rgb(8, 58, 75); border-left:20px solid black; opacity: 1; width: 10%;}
+			.carousel-control-next {background-color: rgb(8, 58, 75); opacity: 1; width: 10%;}
+        </style>
+	</head>
+	<body>
+    	<div class="container-fluid">
+        	<div class="row">
+            	<div class="col-sm-12">
+                	<header role="banner">
+                    	<h1 id="Top"><br><b>Accessible Carousel Example</b></h1><br>
+					</header>
+                </div>
+            </div>
+        </div>
+		<a href="#intro" class="skip" title="skip to introduction" role="link">Skip to introduction</a>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12 col-lg-12 col-xl-12 main">            
+					<main role="main" class="introduction">
+                    	<article role="article">
+							<section class="intro">
+								<div class="row introRow">
+									<div class="col-md-12 col-lg-7 col-xl-8 styling" aria-labelledby="carouselheading">
+										<div class="titleSection" tabindex="0">
+											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" id="commentsIcon"  role="presentation"><path d="M532 386.2c27.5-27.1 44-61.1 44-98.2 0-80-76.5-146.1-176.2-157.9C368.3 72.5 294.3 32 208 32 93.1 32 0 103.6 0 192c0 37 16.5 71 44 98.2-15.3 30.7-37.3 54.5-37.7 54.9-6.3 6.7-8.1 16.5-4.4 25 3.6 8.5 12 14 21.2 14 53.5 0 96.7-20.2 125.2-38.8 9.2 2.1 18.7 3.7 28.4 4.9C208.1 407.6 281.8 448 368 448c20.8 0 40.8-2.4 59.8-6.8C456.3 459.7 499.4 480 553 480c9.2 0 17.5-5.5 21.2-14 3.6-8.5 1.9-18.3-4.4-25-.4-.3-22.5-24.1-37.8-54.8zm-392.8-92.3L122.1 305c-14.1 9.1-28.5 16.3-43.1 21.4 2.7-4.7 5.4-9.7 8-14.8l15.5-31.1L77.7 256C64.2 242.6 48 220.7 48 192c0-60.7 73.3-112 160-112s160 51.3 160 112-73.3 112-160 112c-16.5 0-33-1.9-49-5.6l-19.8-4.5zM498.3 352l-24.7 24.4 15.5 31.1c2.6 5.1 5.3 10.1 8 14.8-14.6-5.1-29-12.3-43.1-21.4l-17.1-11.1-19.9 4.6c-16 3.7-32.5 5.6-49 5.6-54 0-102.2-20.1-131.3-49.7C338 339.5 416 272.9 416 192c0-3.4-.4-6.7-.7-10C479.7 196.5 528 238.8 528 288c0 28.7-16.2 50.6-29.7 64z"/></svg>
+											<h2 id="carouselheading">Trending Topics</h2>
+                                        </div>
+<!-- Functioning Carousel hidden from Screen Readers.
+The carousel is hidden using ARIA so that all content is available to assistive technologies that need the content to be fully loaded and not hidden on page load. This is achieved using the Screen Reader only span under the functioning carousel.-->
+										<span aria-hidden="true">
+                                        	<div class="NewsBox">
+												<div id="NewsArticle" class="carousel slide" data-ride="carousel">
+                                                	<!-- Indicators -->
+                                                    <ol class="carousel-indicators" alt="Slide Index">
+                                                        <button class="active" data-target="#NewsArticle" data-slide-to="0" role="button" tabindex="0"><li><span class="sr-only">Slide 1 of 4</span></li></button>
+                                                        <button class="" data-target="#NewsArticle" data-slide-to="1" role="button" tabindex="0"><li><span class="sr-only">Slide 2 of 4</span></li></button>
+                                                        <button class="" data-target="#NewsArticle" data-slide-to="2" role="button" tabindex="0"><li><span class="sr-only">Slide 3 of 4</span></li></button>
+                                                        <button class="" data-target="#NewsArticle" data-slide-to="3" role="button" tabindex="0"><li><span class="sr-only">Slide 4 of 4</span></li></button>
+                                                    </ol>
+                                                	<!-- Wrapper for slides -->
+                                                    <div class="carousel-inner">
+                                                        <div class="carousel-item active" tabindex="0" alt="Slide 1">
+                                                            <span class="sr-only">Slide 1 of 4. Image description.</span>
+                                                            <img class="d-block w-100 rounded" src="images/Img1.jpg" alt="">		
+                                                            <div class="carouselText">
+                                                                <article>
+                                                                    <h2>Heading of Slide 1</h2>
+                                                                    <p>Text <a href="#" role="link" title="Link" alt="Link" tabindex="0">Link</a>.</p>
+                                                                </article>
+                                                            </div>
+                                                        </div>
+                                                        <div class="carousel-item"  tabindex="0" alt="Slide 2">
+                                                            <span class="sr-only">Slide 2 of 4. Image description.</span>
+                                                            <img class="d-block w-100 rounded" src="images/Img2.jpg" alt="">
+                                                            <div class="carouselText">
+                                                                <article>
+                                                                    <h2>Heading of Slide 2</h2>
+                                                                    <p>Text</p>
+                                                                </article>
+                                                            </div>
+                                                        </div>
+                                                        <div class="carousel-item" tabindex="0" alt="Slide 3">
+                                                            <span class="sr-only">Slide 3 of 4. Image description.</span>
+                                                            <img class="d-block w-100 rounded" src="images/Img3.jpg" alt="">
+                                                            <div class="carouselText">
+                                                                <article>
+                                                                    <h2>Heading of Slide 3</h2> 
+                                                                    <p>Text <a href="#" role="link" title="Link" tabindex="0">Link</a>.</p>
+                                                                </article>
+                                                            </div>
+                                                        </div>
+                                                        <div class="carousel-item" tabindex="0" alt="Slide 4">
+                                                            <span class="sr-only">Slide 4 of 4. Image description.</span>
+                                                            <img class="d-block w-100 rounded" src="images/Img4.jpg" alt="">
+                                                            <div class="carouselText">
+                                                                <article>
+                                                                    <h2>Heading of Slide 4</h2>
+                                                                    <p><a href="#" target="_blank" role="link" title="Link to an external page, will open in a new tab" alt="Link" tabindex="0">Link</a> more text.</p>
+                                                                </article>
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- Wrapper for slides ends-->
+													<!-- Left and right controls -->
+                                                    <a class="carousel-control-prev" href="#NewsArticle" role="button" data-slide="prev" alt="Previous" tabindex="0">
+                                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                        <span class="sr-only">Previous</span>
+                                                    </a>
+                                                    <a class="carousel-control-next" href="#NewsArticle" role="button" data-slide="next" alt="Next" tabindex="0">
+                                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                        <span class="sr-only">Next</span>
+                                                    </a>
+												</div>
+											</div>
+                                    	</span>
+										<!-- Screen Readers / ARIA accessible Slider for assistive tech - please update the content below when the Image Carousel content is updated -->
+                                        <span class="sr-only">Slide 1 of 4. Image description.
+                                            <h2>Heading of Slide 1</h2>
+                                            <p>Text <a href="#" role="link" title="Link" alt="Link" tabindex="0">Link</a>.</p>
+                                            Slide 2 of 4. Image description.
+                                            <h2>Heading of Slide 2</h2>
+                                            <p>Text</p>
+                                            Slide 3 of 4. Image description.
+                                            <h2>Heading of Slide 3</h2> 
+                                            <p>Text <a href="#" role="link" title="Link" tabindex="0">Link</a>.</p>
+                                            Slide 4 of 4. Image description.
+                                            <h2>Heading of Slide 4</h2>
+                                            <p><a href="#" target="_blank" role="link" title="Link to an external page, will open in a new tab" alt="Link" tabindex="0">Link</a> more text.</p>
+                                        </span>
+										<!-- Accessible span ends -->
+                                    </div>
+                                </div>
+                            </section>
+                        </article>
+                    </main>
+                </div>
+            </div>
+        </div>
+        <footer>
+			<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+			<script>$('.carousel').carousel({ interval: 11000, wrap: true });</script>
+        </footer>
+	</body>
+</html>
